@@ -456,13 +456,28 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <motion.div
-              className="hero-blank-panel relative z-[1]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              aria-hidden
-            />
+            <div className="phone-mockup-container group relative z-[1]">
+              <div className="phone-mockup phone-back">
+                <Image
+                  src="/phoneui.png"
+                  alt="Digital Vidhyalaya App Interface"
+                  width={400}
+                  height={810}
+                  className="phone-image"
+                  priority
+                />
+              </div>
+              <div className="phone-mockup phone-front">
+                <Image
+                  src="/phoneui.png"
+                  alt="Digital Vidhyalaya App Interface"
+                  width={400}
+                  height={810}
+                  className="phone-image"
+                  priority
+                />
+              </div>
+            </div>
           </section>
 
           <section className="space-y-10">
