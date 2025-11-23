@@ -456,10 +456,10 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <div className="phone-mockup-container group relative z-[1]">
+            <div className="phone-mockup-container relative z-[1]">
               <div className="phone-mockup phone-back">
                 <Image
-                  src="/phoneui.png"
+                  src="/phoneui1.png"
                   alt="Digital Vidhyalaya App Interface"
                   width={400}
                   height={810}
