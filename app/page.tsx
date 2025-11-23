@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type MotionStyle } from "framer-motion";
 import {
   BookOpenCheck,
   GraduationCap,
@@ -74,53 +75,328 @@ const onboarding = [
   },
 ];
 
+type FloatingShape = {
+  type: "circle" | "triangle" | "square" | "dot";
+  size: number;
+  x: string;
+  y: string;
+  color: string;
+  duration?: number;
+  delay?: number;
+  motion?: {
+    x?: number[];
+    y?: number[];
+    rotate?: number[];
+  };
+};
+
+const floatingShapes: FloatingShape[] = [
+  {
+    type: "circle",
+    size: 28,
+    x: "8%",
+    y: "18%",
+    color: "#7678ed",
+    duration: 9,
+    delay: 0,
+    motion: {
+      x: [0, 16, -12, 8],
+      y: [0, -20, 12, -10],
+      rotate: [0, 12, -8, 4],
+    },
+  },
+  {
+    type: "triangle",
+    size: 34,
+    x: "78%",
+    y: "22%",
+    color: "#d9d9d9",
+    duration: 8,
+    delay: 0.2,
+    motion: {
+      x: [0, -14, 9, -6],
+      y: [0, 10, -18, 12],
+      rotate: [0, -10, 6, -4],
+    },
+  },
+  {
+    type: "square",
+    size: 26,
+    x: "60%",
+    y: "58%",
+    color: "#ffffff",
+    duration: 7.2,
+    delay: 0.35,
+    motion: {
+      x: [0, 18, -8, 10],
+      y: [0, -12, 7, -9],
+      rotate: [0, 18, -14, 6],
+    },
+  },
+  {
+    type: "circle",
+    size: 22,
+    x: "34%",
+    y: "72%",
+    color: "#7678ed",
+    duration: 8.5,
+    delay: 0.5,
+    motion: {
+      x: [0, -20, 14, -10],
+      y: [0, 14, -16, 8],
+      rotate: [0, -15, 9, -6],
+    },
+  },
+  {
+    type: "triangle",
+    size: 30,
+    x: "18%",
+    y: "60%",
+    color: "#000000",
+    duration: 7,
+    delay: 0.65,
+    motion: {
+      x: [0, 12, -18, 9],
+      y: [0, -16, 10, -8],
+      rotate: [0, 16, -12, 4],
+    },
+  },
+  {
+    type: "square",
+    size: 24,
+    x: "50%",
+    y: "28%",
+    color: "#d9d9d9",
+    duration: 8.8,
+    delay: 0.8,
+    motion: {
+      x: [0, -12, 20, -8],
+      y: [0, 18, -14, 9],
+      rotate: [0, -20, 10, -6],
+    },
+  },
+  {
+    type: "dot",
+    size: 12,
+    x: "86%",
+    y: "48%",
+    color: "#ffffff",
+    duration: 6.2,
+    delay: 0.95,
+    motion: {
+      x: [0, 10, -6, 4],
+      y: [0, -8, 6, -4],
+    },
+  },
+  {
+    type: "dot",
+    size: 10,
+    x: "42%",
+    y: "40%",
+    color: "#000000",
+    duration: 6.5,
+    delay: 1.15,
+    motion: {
+      x: [0, -10, 12, -6],
+      y: [0, 6, -10, 4],
+    },
+  },
+  {
+    type: "triangle",
+    size: 24,
+    x: "68%",
+    y: "40%",
+    color: "#7678ed",
+    duration: 7.8,
+    delay: 1.3,
+    motion: {
+      x: [0, 16, -10, 12],
+      y: [0, -14, 18, -12],
+      rotate: [0, 20, -18, 10],
+    },
+  },
+  {
+    type: "dot",
+    size: 14,
+    x: "24%",
+    y: "46%",
+    color: "#d9d9d9",
+    duration: 6.8,
+    delay: 1.45,
+    motion: {
+      x: [0, 8, -12, 6],
+      y: [0, -10, 14, -6],
+    },
+  },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
   show: { opacity: 1, y: 0 },
 };
 
+const navLinks = [
+  { label: "How it works", href: "#features" },
+  { label: "Pricing", href: "#register" },
+];
+
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="page-shell relative min-h-screen overflow-hidden bg-[#373643] text-white">
       <div className="hero-gradient" aria-hidden />
-      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-10 lg:px-12">
-        <nav className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-xl">
-          <div className="flex items-center gap-4">
+      <header className="glass-nav fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-6xl px-3 py-2 sm:px-6 sm:py-3 md:top-6 md:px-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Image
-              className="rounded-2xl border border-white/15"
-              src="/digitalvidhyalaya.png"
+              className="rounded-xl"
+              src="/logo.png"
               alt="Digital Vidhyalaya logo"
-              width={72}
-              height={72}
+              width={48}
+              height={48}
               priority
             />
             <div>
-              <p className="text-xs uppercase tracking-[0.5em] text-white/60">
-                Digital Vidhyalaya
-              </p>
-              <p className="text-lg font-semibold text-white">
-                Software for future-ready schools
-              </p>
+              <p className="text-sm font-semibold text-white sm:text-base">Vidhyalaya</p>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <a className="btn-ghost" href="#register">
+          <nav className="hidden items-center gap-5 lg:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="nav-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-3">
+            <div className="lg:hidden">
+              <button
+                type="button"
+                className="nav-toggle"
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+                aria-expanded={isMenuOpen}
+                aria-label="Toggle navigation menu"
+              >
+                <span className="sr-only">Toggle menu</span>
+                <span aria-hidden className={`hamburger ${isMenuOpen ? "is-open" : ""}`} />
+              </button>
+            </div>
+            <div className="hidden items-center gap-3 lg:flex">
+              <a className="btn-ghost" href="#register">
+                Talk to our team
+              </a>
+              <a
+                className="btn-accent"
+                href="https://app.vidhyalaya.digital"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sign in
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className={`mobile-menu w-full lg:hidden ${isMenuOpen ? "open" : ""}`}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className="space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={`mobile-${link.label}`}
+                href={link.href}
+                className="nav-link block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a className="btn-ghost block text-center" href="#register" onClick={() => setIsMenuOpen(false)}>
               Talk to our team
             </a>
             <a
-              className="btn-accent"
+              className="btn-accent block text-center"
               href="https://app.vidhyalaya.digital"
               target="_blank"
               rel="noreferrer"
+              onClick={() => setIsMenuOpen(false)}
             >
               Sign in
             </a>
           </div>
-        </nav>
+        </div>
+      </header>
 
-        <main className="mt-16 space-y-24">
-          <section className="grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="space-y-10">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-32 md:px-10 lg:px-12">
+        <main className="mt-10 space-y-24">
+          <section className="relative grid overflow-hidden gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="shape-layer" aria-hidden>
+              {floatingShapes.map((shape, index) => {
+                const baseStyle: MotionStyle & { "--shape-size"?: string } = {
+                  left: shape.x,
+                  top: shape.y,
+                  color: shape.color,
+                };
+
+                if (shape.type !== "triangle") {
+                  baseStyle["--shape-size"] = `${shape.size}px`;
+                } else {
+                  baseStyle.width = shape.size;
+                  baseStyle.height = shape.size;
+                }
+
+                const animateConfig = {
+                  x: shape.motion?.x ?? [0, 14, -10, 6],
+                  y: shape.motion?.y ?? [0, -12, 8, -6],
+                  rotate: shape.motion?.rotate,
+                  opacity: [0.2, 0.85, 0.45],
+                };
+
+                if (!animateConfig.rotate) {
+                  delete animateConfig.rotate;
+                }
+
+                const transitionConfig = {
+                  duration: shape.duration ?? 8 + index * 0.2,
+                  repeat: Infinity,
+                  repeatType: "mirror" as const,
+                  ease: "easeInOut" as const,
+                  delay: shape.delay ?? 0,
+                };
+
+                if (shape.type === "triangle") {
+                  return (
+                    <motion.svg
+                      key={`${shape.type}-${index}`}
+                      className="floating-triangle"
+                      style={baseStyle}
+                      viewBox="0 0 100 100"
+                      initial={{ opacity: 0 }}
+                      animate={animateConfig}
+                      transition={transitionConfig}
+                    >
+                      <polygon points="50 5, 5 95, 95 95" />
+                    </motion.svg>
+                  );
+                }
+
+                return (
+                  <motion.span
+                    key={`${shape.type}-${index}`}
+                    className={`floating-shape floating-shape--${shape.type}`}
+                    style={baseStyle}
+                    initial={{ opacity: 0 }}
+                    animate={animateConfig}
+                    transition={transitionConfig}
+                  />
+                );
+              })}
+            </div>
+            <div className="relative z-[1] space-y-10">
               <motion.p
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white"
                 initial="hidden"
@@ -131,7 +407,7 @@ export default function Home() {
                 Purpose-built for Nepal
               </motion.p>
               <motion.h1
-                className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
+                className="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-4xl"
                 initial="hidden"
                 animate="show"
                 variants={fadeUp}
@@ -178,32 +454,36 @@ export default function Home() {
                   Watch platform walkthrough
                 </a>
               </motion.div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {stats.map((stat) => (
-                  <motion.div
-                    key={stat.label}
-                    className="stat-card"
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                  >
-                    <p className="text-3xl font-semibold text-white">{stat.value}</p>
-                    <p className="text-sm font-medium text-white">{stat.label}</p>
-                    <p className="text-xs uppercase tracking-wider text-white/70">
-                      {stat.detail}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
             </div>
 
             <motion.div
-              className="hero-blank-panel"
+              className="hero-blank-panel relative z-[1]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               aria-hidden
             />
+          </section>
+
+          <section className="space-y-10">
+            <div className="grid gap-6 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <motion.div
+                  key={stat.label}
+                  className="stat-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <p className="text-3xl font-semibold text-white">{stat.value}</p>
+                  <p className="text-sm font-medium text-white">{stat.label}</p>
+                  <p className="text-xs uppercase tracking-wider text-white/70">
+                    {stat.detail}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </section>
 
           <section id="features" className="space-y-10">

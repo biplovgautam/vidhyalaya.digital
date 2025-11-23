@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   description:
     "Digital Vidhyalaya helps Nepali schools digitize attendance, finance, academics, and communication.",
   icons: {
-    icon: "/digitalvidhyalaya.png",
-    shortcut: "/digitalvidhyalaya.png",
-    apple: "/digitalvidhyalaya.png",
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 };
 
