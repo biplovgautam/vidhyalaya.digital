@@ -236,7 +236,6 @@ const fadeUp = {
 };
 
 const navLinks = [
-  { label: "How it works", href: "#features" },
   { label: "Pricing", href: "#register" },
 ];
 
