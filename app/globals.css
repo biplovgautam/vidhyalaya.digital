@@ -135,8 +135,8 @@ a {
 @media (min-width: 768px) {
   .btn-ghost,
   .btn-accent {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.875rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.86rem;
   }
 }
 
@@ -152,6 +152,8 @@ a {
   border: none;
   color: white;
   box-shadow: 0 15px 35px rgba(118, 120, 237, 0.35);
+  background-size: 200% 200%;
+  transition: background-position 0.6s ease, box-shadow 0.3s ease;
 }
 
 .btn-secondary {
@@ -168,8 +170,8 @@ a {
 
 .btn-accent:hover,
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(118, 120, 237, 0.4);
+  background-position: 100% 50%;
+  box-shadow: 0 18px 40px rgba(118, 120, 237, 0.5);
 }
 
 .btn-compact {
