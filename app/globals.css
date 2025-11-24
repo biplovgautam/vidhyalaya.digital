@@ -203,6 +203,103 @@ a {
   color: white;
 }
 
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+  background: transparent;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 180px;
+  background: rgba(17, 16, 28, 0.95);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.6rem;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.mobile-dropdown {
+  display: block;
+}
+
+.mobile-dropdown-menu {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  animation: dropdownSlide 0.3s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+  }
+}
+
 .nav-toggle {
   height: 42px;
   width: 42px;
@@ -269,7 +366,7 @@ a {
 
 .mobile-menu.open {
   margin-top: 1rem;
-  max-height: 320px;
+  max-height: 500px;
 }
 
 .mobile-menu > div {
@@ -279,6 +376,35 @@ a {
   background: rgba(17, 16, 28, 0.65);
   backdrop-filter: blur(20px);
   box-shadow: 0 25px 45px rgba(5, 5, 10, 0.45);
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-content {
+  order: 2;
+}
+
+.hero-phones {
+  order: 1;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    display: grid;
+  }
+  
+  .hero-content {
+    order: 0;
+  }
+  
+  .hero-phones {
+    order: 0;
+    margin-bottom: 0;
+  }
 }
 
 .feature-pill {

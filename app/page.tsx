@@ -240,8 +240,15 @@ const navLinks = [
   { label: "Pricing", href: "#register" },
 ];
 
+const companyLinks = [
+  { label: "Our Story", href: "#about" },
+  { label: "Social Impact", href: "#impact" },
+  { label: "Career", href: "#careers" },
+];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
 
   return (
     <div className="page-shell relative min-h-screen overflow-hidden bg-[#373643] text-white">
@@ -271,6 +278,37 @@ export default function Home() {
                 {link.label}
               </a>
             ))}
+            <div 
+              className="nav-dropdown"
+              onMouseEnter={() => setIsCompanyOpen(true)}
+              onMouseLeave={() => setIsCompanyOpen(false)}
+            >
+              <button className="nav-link nav-dropdown-trigger">
+                Company
+                <svg 
+                  className={`dropdown-arrow ${isCompanyOpen ? 'open' : ''}`}
+                  width="12" 
+                  height="12" 
+                  viewBox="0 0 12 12" 
+                  fill="none"
+                >
+                  <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </button>
+              {isCompanyOpen && (
+                <div className="nav-dropdown-menu">
+                  {companyLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="nav-dropdown-link"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
           <div className="flex items-center gap-3">
             <div className="lg:hidden">
@@ -315,6 +353,42 @@ export default function Home() {
                 {link.label}
               </a>
             ))}
+            <div className="mobile-dropdown">
+              <button
+                className="nav-link block w-full text-left"
+                onClick={() => setIsCompanyOpen(!isCompanyOpen)}
+              >
+                <span className="flex items-center justify-between">
+                  Company
+                  <svg 
+                    className={`dropdown-arrow ${isCompanyOpen ? 'open' : ''}`}
+                    width="12" 
+                    height="12" 
+                    viewBox="0 0 12 12" 
+                    fill="none"
+                  >
+                    <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              {isCompanyOpen && (
+                <div className="mobile-dropdown-menu">
+                  {companyLinks.map((link) => (
+                    <a
+                      key={`mobile-${link.label}`}
+                      href={link.href}
+                      className="nav-dropdown-link block"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsCompanyOpen(false);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
             <a className="btn-ghost block text-center" href="#register" onClick={() => setIsMenuOpen(false)}>
               Talk to our team
             </a>
@@ -333,7 +407,7 @@ export default function Home() {
 
       <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 md:px-10 md:pt-24 lg:px-12">
         <main className="mt-4 space-y-24 md:mt-6">
-          <section className="relative grid overflow-hidden gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <section className="hero-section relative grid overflow-hidden gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="shape-layer" aria-hidden>
               {floatingShapes.map((shape, index) => {
                 const baseStyle: MotionStyle & { "--shape-size"?: string } = {
@@ -396,7 +470,7 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="relative z-[1] space-y-10">
+            <div className="hero-content relative z-[1] space-y-10">
               <motion.p
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white"
                 initial="hidden"
@@ -456,7 +530,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <div className="phone-mockup-container relative z-[1]">
+            <div className="hero-phones phone-mockup-container relative z-[1]">
               <div className="phone-mockup phone-back">
                 <Image
                   src="/phoneui1.png"
