@@ -125,10 +125,19 @@ a {
   border-radius: 999px;
   font-weight: 600;
   padding: 0.85rem 1.6rem;
+  font-size: 0.95rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .btn-ghost,
+  .btn-accent {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+  }
 }
 
 .btn-ghost {

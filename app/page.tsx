@@ -246,7 +246,7 @@ export default function Home() {
   return (
     <div className="page-shell relative min-h-screen overflow-hidden bg-[#373643] text-white">
       <div className="hero-gradient" aria-hidden />
-      <header className="glass-nav fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-6xl px-3 py-2 sm:px-6 sm:py-3 md:top-6 md:px-8">
+      <header className="glass-nav fixed top-3 left-3 right-3 z-30 mx-auto w-auto max-w-6xl px-3 py-1.5 sm:px-6 md:inset-x-0 md:top-6 md:px-8 md:py-1.5">
         <div className="flex items-center justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2 sm:gap-3">
             <Image
@@ -331,8 +331,8 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-32 md:px-10 lg:px-12">
-        <main className="mt-10 space-y-24">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 md:px-10 md:pt-24 lg:px-12">
+        <main className="mt-4 space-y-24 md:mt-6">
           <section className="relative grid overflow-hidden gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="shape-layer" aria-hidden>
               {floatingShapes.map((shape, index) => {
