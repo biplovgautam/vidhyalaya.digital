@@ -242,7 +242,7 @@ const navLinks = [
 ];
 
 const companyLinks = [
-  { label: "Our Story", href: "#about" },
+  { label: "Our Story", href: "/ourstory" },
   { label: "Social Impact", href: "#impact" },
   { label: "Career", href: "#careers" },
 ];
