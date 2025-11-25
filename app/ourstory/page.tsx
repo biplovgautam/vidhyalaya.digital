@@ -2,28 +2,36 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Globe, Linkedin } from "lucide-react";
 
 const teamMembers = [
   {
-    name: "John Doe",
+    name: "Biplov Gautam",
     role: "Founder & CEO",
     image: "/team/member1.jpg",
+    portfolio: "https://biplovgautam.com.np",
+    linkedin: "https://www.linkedin.com/in/biplovgautam/",
   },
   {
     name: "Jane Smith",
     role: "Chief Technology Officer",
     image: "/team/member2.jpg",
+    portfolio: "#",
+    linkedin: "#",
   },
   {
     name: "Michael Johnson",
     role: "Head of Product",
     image: "/team/member3.jpg",
+    portfolio: "#",
+    linkedin: "#",
   },
   {
     name: "Sarah Williams",
     role: "Lead Designer",
     image: "/team/member4.jpg",
+    portfolio: "#",
+    linkedin: "#",
   },
 ];
 
@@ -84,13 +92,35 @@ export default function OurStory() {
                       </div>
                       
                       {/* Member Info */}
-                      <div className="text-center">
+                      <div className="text-center mb-4">
                         <h3 className="text-xl font-semibold mb-1">
                           {member.name}
                         </h3>
                         <p className="text-sm text-gray-400">
                           {member.role}
                         </p>
+                      </div>
+
+                      {/* Social Links */}
+                      <div className="flex gap-2 justify-center">
+                        <a
+                          href={member.portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 text-sm"
+                        >
+                          <Globe size={16} />
+                          <span>Portfolio</span>
+                        </a>
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 border border-[#0A66C2]/20 hover:border-[#0A66C2]/40 transition-all duration-200 text-sm"
+                        >
+                          <Linkedin size={16} />
+                          <span>LinkedIn</span>
+                        </a>
                       </div>
                     </div>
                   </div>
