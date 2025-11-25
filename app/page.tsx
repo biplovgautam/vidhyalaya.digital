@@ -5,9 +5,11 @@ import Image from "next/image";
 import { motion, type MotionStyle } from "framer-motion";
 import {
   BookOpenCheck,
+  Building2,
   GraduationCap,
   LineChart,
   MonitorSmartphone,
+  Play,
   ShieldCheck,
   Users2,
 } from "lucide-react";
@@ -514,7 +516,7 @@ export default function Home() {
                 <li className="feature-pill">Offline-friendly analytics & SMS alerts</li>
               </motion.ul>
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row gap-4"
                 initial="hidden"
                 animate="show"
                 variants={fadeUp}
@@ -522,9 +524,11 @@ export default function Home() {
               >
                 <a className="btn-primary" href="#register">
                   Register your organization
+                  <Building2 size={18} />
                 </a>
                 <a className="btn-secondary" href="#features">
                   Watch platform walkthrough
+                  <Play size={18} fill="currentColor" />
                 </a>
               </motion.div>
             </div>
