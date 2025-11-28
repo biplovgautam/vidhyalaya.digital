@@ -513,7 +513,7 @@ export default function Home() {
                 <li className="feature-pill">Digitized admission & fee journeys</li>
                 <li className="feature-pill">Smart lesson plans & attendance</li>
                 <li className="feature-pill">Guardian & alumni engagement app</li>
-                <li className="feature-pill">Offline-friendly analytics & SMS alerts</li>
+                <li className="feature-pill">AI-powered student academic analysis</li>
               </motion.ul>
               <motion.div
                 className="flex flex-col sm:flex-row gap-4"
